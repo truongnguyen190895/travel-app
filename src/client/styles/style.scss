@@ -8,17 +8,65 @@ body {
   margin: 0;
 
   .container {
+    width: 800px;
     .title {
       padding: 20px;
     }
-    .trip-detail {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      column-gap: 20px;
+    .trip-image {
+      display: none;
+    }
+    .trip-form {
+      background-color: #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      border-radius: 10px;
+      gap: 20px;
 
-      .trip-image {
-        img {
-          width: 100%;
+      .trip-input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .trip-input-control {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          & > input {
+            border: none;
+            background-color: inherit;
+            outline: none;
+          }
+
+          & > p,
+          input {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+          }
+        }
+        .trip-actions {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+
+          .btn {
+            width: 120px;
+            height: 40px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            &.primary {
+              background-color: #5356ff;
+              color: white;
+            }
+            &.secondary {
+              background-color: #dddddd;
+              color: white;
+            }
+          }
         }
       }
     }
