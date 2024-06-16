@@ -12,9 +12,7 @@ body {
     .title {
       padding: 20px;
     }
-    .trip-image {
-      display: none;
-    }
+
     .trip-form {
       background-color: #eaeaea;
       display: flex;
@@ -23,7 +21,11 @@ body {
       height: 300px;
       border-radius: 10px;
       gap: 20px;
-
+      .trip-image {
+        display: none;
+        height: 100%;
+        width: 40%;
+      }
       .trip-input {
         display: flex;
         flex-direction: column;

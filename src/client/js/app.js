@@ -1,13 +1,25 @@
+const tripImageContainer = document.querySelector(".trip-image");
+
 const getDestinationImage = (destination) => {
-  console.log("getting image for ", destination);
   fetch("/api/images", {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({ destination: destination }),
   })
     .then((response) => response.json())
-    .then((data) => console.log("Image data ", data))
+    .then((data) => {
+      const imgUrl = data.hits[0].webformatURL;
+      const tripImage = document.createElement("img");
+      tripImage.src = imgUrl;
+      tripImage.alt = "destination image";
+      tripImage.style.width = "100%";
+      tripImageContainer.appendChild(tripImage);
+      tripImageContainer.style.display = "flex";
+      tripImageContainer.style.alignItems = "center";
+      tripImageContainer.style.justifyContent = "center";
+    })
     .catch((error) => console.error("Getting images failed ", error));
 };
 

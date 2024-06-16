@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 
 dotenv.config();
 
@@ -14,11 +14,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "../../dist")));
 
-app.get("/api/images", (req, res) => {
-  fetch(`${pixabayEnpoint}?key=${pixabayKey}`)
+app.post("/api/images", (req, res) => {
+  fetch(
+    `${pixabayEnpoint}?key=${pixabayKey}&q=${req.body.destination}&image_type=photo&orientation=horizontal`
+  )
     .then((response) => response.json())
     .then((data) => {
-      res.json("Get image successfully ", data);
+      res.status(200).json(data);
     });
 });
 

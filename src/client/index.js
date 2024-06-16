@@ -7,4 +7,3 @@ const tripDestination = document.querySelector("#trip-destination"); // should b
 submitBtn.addEventListener("click", () =>
   getDestinationImage(tripDestination.value)
 );
-// export { getDestinationImage };
