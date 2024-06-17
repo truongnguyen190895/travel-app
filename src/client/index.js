@@ -1,9 +1,11 @@
 import "./styles/style.scss";
-import { getDestinationImage } from "./js/app";
+import { getDestinationImage, getDestinationCoordinates } from "./js/app";
 
 const submitBtn = document.querySelector("#submit");
 const tripDestination = document.querySelector("#trip-destination"); // should be an input
 
 submitBtn.addEventListener("click", () =>
-  getDestinationImage(tripDestination.value)
+  getDestinationCoordinates(encodeURIComponent(tripDestination.value)).then(
+    () => getDestinationImage(encodeURIComponent(tripDestination.value))
+  )
 );
