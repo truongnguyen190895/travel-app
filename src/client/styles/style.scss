@@ -70,6 +70,12 @@ body {
             }
           }
         }
+
+        .trip-weather {
+          display: none;
+          align-items: center;
+          gap: 20px;
+        }
       }
     }
   }

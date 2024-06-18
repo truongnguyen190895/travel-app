@@ -1,7 +1,19 @@
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
+
+const today = dayjs();
+
 const tripImageContainer = document.querySelector(".trip-image");
+const tempHigh = document.querySelector("#temp_hight");
+const tripWeatherContainer = document.querySelector(".trip-weather");
+const tempLow = document.querySelector("#temp_low");
+const tempDesc = document.querySelector("#tem_desc");
+const tripCountdown = document.querySelector(".trip-countdown");
 
 const getDestinationImage = (destination) => {
-  return fetch("/api/images", {
+  fetch("/api/images", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,17 +36,29 @@ const getDestinationImage = (destination) => {
     .catch((error) => console.error("Getting images failed ", error));
 };
 
-const getDestinationCoordinates = (destination) => {
-  return fetch("/api/coordinates", {
+const getDestinationWeather = (destination, departure) => {
+  fetch("/api/weather", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ destination: destination }),
+    body: JSON.stringify({
+      destination: destination,
+      departureDate: departure,
+    }),
   })
     .then((response) => response.json())
-    .then((data) => console.log("GeoNames ", data))
-    .catch((error) => console.error("GetNames failed ", error));
+    .then((data) => {
+      const countdown = dayjs(departure, "MM/DD/YYYY").diff(today, "day");
+      tripWeatherContainer.style.display = "flex";
+      tempHigh.innerHTML = data.high_temp;
+      tempLow.innerHTML = data.low_temp;
+      tempDesc.innerHTML = data.weather.description;
+      tripCountdown.innerHTML = `The trip is ${countdown} ${
+        countdown > 1 ? "days" : "day"
+      } away`;
+      getDestinationImage(destination);
+    });
 };
 
-export { getDestinationImage, getDestinationCoordinates };
+export { getDestinationImage, getDestinationWeather };
