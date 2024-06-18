@@ -37,9 +37,9 @@ app.post("/api/weather", (req, res) => {
   const inputDay = dayjs(departureDate, "MM/DD/YYYY");
   const today = dayjs();
   let diff = inputDay.diff(today, "day");
-
-  if (diff > 15) {
-    diff = 15;
+  const maxDaysToForecast = 15;
+  if (diff > maxDaysToForecast) {
+    diff = maxDaysToForecast;
   }
 
   fetch(`${geoNamesEndpoint}?q=${destination}&username=${geoNameKey}`)
@@ -56,6 +56,10 @@ app.post("/api/weather", (req, res) => {
     });
 });
 
-app.listen(port, () => {
-  console.log("Server is running at port ", port);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log("Server is running at port ", port);
+  });
+}
+
+module.exports = app;
