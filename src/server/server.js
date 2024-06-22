@@ -43,17 +43,33 @@ app.post("/api/weather", (req, res) => {
   }
 
   fetch(`${geoNamesEndpoint}?q=${destination}&username=${geoNameKey}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.headers.get("Content-Type").includes("application/json")) {
+        return response.json();
+      } else {
+        throw new Error("Invalid response format");
+      }
+    })
     .then((data) => {
+      if (data.geonames.length === 0) {
+        throw new Error("No results found for the given destination");
+      }
       const firstResult = data.geonames[0];
-      fetch(
+      return fetch(
         `${weatherBitEndpoint}/forecast/daily?lat=${firstResult.lat}&lon=${
           firstResult.lng
         }&key=${weatherKey}&days=${diff + 1}`
-      )
-        .then((response) => response.json())
-        .then((dataWeather) => res.status(200).json(dataWeather.data[diff]));
-    });
+      );
+    })
+    .then((response) => {
+      if (response.headers.get("Content-Type").includes("application/json")) {
+        return response.json();
+      } else {
+        throw new Error("Invalid response format");
+      }
+    })
+    .then((dataWeather) => res.status(200).json(dataWeather.data[diff]))
+    .catch((error) => res.status(500).send(error.message));
 });
 
 if (process.env.NODE_ENV !== "test") {
