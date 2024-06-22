@@ -1,4 +1,5 @@
 import { getDestinationWeather } from "./js/app";
+import { validateDate } from "./js/helpers";
 import "./styles/style.scss";
 
 const submitBtn = document.querySelector("#submit");
@@ -8,9 +9,10 @@ const tripDeparture = document.querySelector("#trip-departure"); // should be an
 submitBtn.addEventListener("click", () => {
   const destination = tripDestination.value;
   const departure = tripDeparture.value;
-  if (destination && departure) {
+
+  if (destination && departure && validateDate(departure)) {
     getDestinationWeather(encodeURIComponent(destination), departure);
   } else {
-    window.alert("Location and departure can not be empty");
+    window.alert("Location and departure can not be empty or wrong format");
   }
 });
