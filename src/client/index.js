@@ -1,18 +1,8 @@
-import { getDestinationWeather } from "./js/app";
-import { validateDate } from "./js/helpers";
-import "./styles/style.scss";
+import React from "react";
+import { createRoot } from "react-dom/client";
+// import { getDestinationWeather } from "./js/app";
+// import { validateDate } from "./js/helpers";
+// import "./styles/style.scss";
 
-const submitBtn = document.querySelector("#submit");
-const tripDestination = document.querySelector("#trip-destination"); // should be an input
-const tripDeparture = document.querySelector("#trip-departure"); // should be an input
-
-submitBtn.addEventListener("click", () => {
-  const destination = tripDestination.value;
-  const departure = tripDeparture.value;
-
-  if (destination && departure && validateDate(departure)) {
-    getDestinationWeather(encodeURIComponent(destination), departure);
-  } else {
-    window.alert("Location and departure can not be empty or wrong format");
-  }
-});
+const root = createRoot(document.getElementById("app"));
+root.render(<h1>Hello, world</h1>);

@@ -12,68 +12,6 @@
     />
   </head>
   <body>
-    <div class="container">
-      <section class="title">
-        <h1>Travel Planner</h1>
-      </section>
-      <section class="trip-form">
-        <div class="trip-image"></div>
-        <div class="trip-input">
-          <div class="trip-input-control">
-            <p>My trip to:</p>
-            <input
-              id="trip-destination"
-              type="text"
-              required
-              placeholder="Enter Location"
-            />
-          </div>
-          <div class="trip-input-control">
-            <p>Departing:</p>
-            <input
-              id="trip-departure"
-              required
-              type="text"
-              placeholder="MM/DD/YYYY"
-            />
-          </div>
-          <div class="trip-actions">
-            <button id="submit" class="btn primary">Save trip</button>
-            <button class="btn secondary">Remove trip</button>
-          </div>
-          <div class="trip-countdown"></div>
-          <div class="trip-weather">
-            <p>Typical weather is:</p>
-            <div class="temperature">
-              <span>High:</span>
-              <span id="temp_hight"></span>
-              ,
-              <span>Low:</span>
-              <span id="temp_low"></span>
-            </div>
-          </div>
-          <div class="weather-description">
-            <span id="tem_desc"></span>
-          </div>
-        </div>
-      </section>
-    </div>
+    <div id="app"></div>
   </body>
-  <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("/service-worker.js")
-          .then((registration) => {
-            console.log(
-              "Service Worker registered with scope:",
-              registration.scope
-            );
-          })
-          .catch((error) => {
-            console.log("Service Worker registration failed:", error);
-          });
-      });
-    }
-  </script>
 </html>
