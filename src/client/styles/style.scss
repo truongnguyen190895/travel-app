@@ -1,97 +1,20 @@
+@font-face {
+  font-family: "Avo";
+  src: url("../assets/fonts/UTM\ Avo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
 }
 
 body {
-  padding: 0;
   margin: 0;
+  padding: 0;
+  font-family: "Avo", sans-serif;
 
-  .container {
-    width: 800px;
-    .title {
-      padding: 20px;
-    }
-
-    .trip-form {
-      background-color: #eaeaea;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 300px;
-      border-radius: 10px;
-      gap: 20px;
-      .trip-image {
-        display: none;
-        height: 100%;
-        width: 40%;
-      }
-      .trip-input {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        .trip-input-control {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-
-          & > input {
-            border: none;
-            background-color: inherit;
-            outline: none;
-          }
-
-          & > p,
-          input {
-            font-size: 20px;
-            font-weight: 500;
-            margin: 0;
-          }
-        }
-        .trip-actions {
-          display: flex;
-          align-items: center;
-          gap: 40px;
-
-          .btn {
-            width: 120px;
-            height: 40px;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            &.primary {
-              background-color: #5356ff;
-              color: white;
-            }
-            &.secondary {
-              background-color: #dddddd;
-              color: white;
-            }
-          }
-        }
-
-        .trip-weather {
-          display: none;
-          align-items: center;
-          gap: 20px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .trip-form {
-    flex-direction: column;
-    height: initial !important;
-
-    .trip-image {
-      width: 100% !important;
-    }
-
-    .trip-input {
-      padding: 20px;
-    }
+  .image-container {
+    width: 400px;
   }
 }
