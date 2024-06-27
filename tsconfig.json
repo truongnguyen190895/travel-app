@@ -3,13 +3,20 @@
     "target": "es5",
     "lib": ["dom", "es2015"],
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsxImportSource": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/client/*"],
+      "@components/*": ["src/client/components/*"],
+      "@assets/*": ["src/client/assets/*"]
+    }
   },
   "include": ["src"]
 }

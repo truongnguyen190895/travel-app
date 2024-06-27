@@ -1,3 +1,5 @@
+@import "animations";
+
 @font-face {
   font-family: "Avo";
   src: url("../assets/fonts/UTM\ Avo.ttf") format("truetype");
@@ -16,5 +18,6 @@ body {
 
   .image-container {
     width: 400px;
+    // animation: rotate 5s linear infinite;
   }
 }
